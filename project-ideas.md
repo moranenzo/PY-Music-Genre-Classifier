@@ -29,19 +29,3 @@
   <li><strong>Machine learning</strong> : NLP pour l’analyse de sentiments et traitement de texte.</li>
   <li><strong>Difficulté</strong> : Moyenne (récupération de données, NLP).</li>
 </ul>
-
-<h3>5. <strong>Génération de recettes de cuisine personnalisées</strong></h3>
-<ul>
-  <li><strong>Objectif</strong> : Concevoir un modèle qui génère des recettes en fonction des ingrédients disponibles et des préférences de l’utilisateur (sucré, salé, etc.).</li>
-  <li><strong>Côté ludique</strong> : Intégrer une interface où l’utilisateur entre les ingrédients qu’il a chez lui et reçoit une recette unique et personnalisée.</li>
-  <li><strong>Machine learning</strong> : NLP pour génération de texte ou modèles de réseaux de neurones pour des recettes créatives.</li>
-  <li><strong>Difficulté</strong> : Moyenne à élevée (génération de texte, personnalisation).</li>
-</ul>
-
-<h3>6. <strong>Prédiction de résultats sportifs basés sur des statistiques de joueurs</strong></h3>
-<ul>
-  <li><strong>Objectif</strong> : Utiliser les statistiques des joueurs et des équipes pour prédire le résultat de matchs de football, de basketball, ou d’autres sports.</li>
-  <li><strong>Côté ludique</strong> : Vous pouvez organiser un mini-tournoi de pronostics en testant les prédictions.</li>
-  <li><strong>Machine learning</strong> : Modèles de classification supervisés, analyse des données.</li>
-  <li><strong>Difficulté</strong> : Moyenne (préparation des données sportives, classification).</li>
-</ul>
