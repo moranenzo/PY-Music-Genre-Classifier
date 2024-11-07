@@ -21,11 +21,3 @@
   <li><strong>Machine learning</strong> : Modèles de filtrage collaboratif ou filtrage basé sur le contenu.</li>
   <li><strong>Difficulté</strong> : Moyenne (techniques de recommandation, collecte et manipulation de données).</li>
 </ul>
-
-<h3>4. <strong>Analyse des sentiments sur les réseaux sociaux pour suivre la hype de sujets culturels ou sportifs</strong></h3>
-<ul>
-  <li><strong>Objectif</strong> : Analyser les tweets ou posts Instagram pour suivre l’évolution de la "hype" autour de films, jeux, ou événements sportifs en détectant les émotions et en suivant des hashtags.</li>
-  <li><strong>Côté ludique</strong> : Observer les courbes de popularité en temps réel et afficher les hashtags les plus "hype" du moment.</li>
-  <li><strong>Machine learning</strong> : NLP pour l’analyse de sentiments et traitement de texte.</li>
-  <li><strong>Difficulté</strong> : Moyenne (récupération de données, NLP).</li>
-</ul>
