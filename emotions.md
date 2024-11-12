@@ -3,9 +3,16 @@
 
 ### 2. **Tristesse** (Détresse, Nostalgie, Déception)
    - Mots-clés : triste, pleurer, perdu, solitude, sombre, manque, regret, adieu, douleur, froid, abandon, brisé, mélancolie, vide, manque, nostalgie, souffrance, chagrin.
+   - playlists : https://open.spotify.com/intl-fr/album/3iMjk15PNBjloo3WLFbQdW (100)
+   -             https://open.spotify.com/playlist/3k3C5DEBxSbOyoI9fkAVGd (169)
+                  https://open.spotify.com/playlist/5DVUEqRL1EV8I9n65eBaAw (123)
+                  https://open.spotify.com/playlist/2ZnAWYy4AOs8tpRUCGF6Py (116)
+                  https://open.spotify.com/playlist/5mLIo3cu4cJRcdjzfMpQZt (102)
+                  https://open.spotify.com/playlist/37i9dQZF1DXbrUpGvoi3TS (100)
 
 ### 3. **Colère** (Rage, Haine, Frustration)
    - Mots-clés : haine, colère, fuir, guerre, violence, brisé, cri, rage, sombre, douleur, feu, destruction, frustration, combat, ennemi, diable, vengeance, poison.
+
 
 
 La liste de mots-clés peut effectivement sembler incomplète, car les émotions humaines sont complexes et peuvent être exprimées avec une grande variété de mots et de contextes. Pour une détection d’émotions fiable dans les paroles de chansons, il est souvent nécessaire d'aller au-delà d'une simple liste de mots-clés, pour plusieurs raisons :
