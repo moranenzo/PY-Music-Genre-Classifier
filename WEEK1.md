@@ -1,8 +1,8 @@
 ### **Semaine 1 : Recherche et préparation des données (uniquement pour les paroles)**
 
 #### **1. Définir les objectifs précis et cadrer le projet**
-   - **Choisir les émotions à détecter** : Optez pour trois ou quatre émotions distinctes (par exemple, joie, tristesse, colère, et surprise) pour simplifier l’analyse et rendre les résultats plus cohérents.
-   - **Cadrage des objectifs** : Établir une liste de ce que vous souhaitez obtenir avec votre modèle (ex. la prédiction d’émotion pour chaque chanson, l’analyse de l’évolution émotionnelle dans une playlist, etc.).
+   - **Choisir les émotions à détecter** : Joie, tristesse et colère
+   - **Cadrage des objectifs** : Émotion pour chaque chanson
 
 #### **2. Collecte des données de paroles**
    - **Rechercher des datasets de chansons étiquetées par émotion** :
