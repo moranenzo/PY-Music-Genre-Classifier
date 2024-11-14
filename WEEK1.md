@@ -1,34 +1,30 @@
-1. **Jour 1 : Choix des genres et recherche de datasets**
-   - [ ] Discuter avec l'équipe pour sélectionner 5 à 7 genres de musique à cibler (ex. rock, rap, pop, jazz, country).
-   - [ ] Rechercher des datasets contenant des paroles étiquetées par genre (ex. Million Song Dataset, Genius Lyrics, GTZAN).
-   - [ ] Identifier des API de collecte de paroles (ex. Genius, Musixmatch) en cas de besoin supplémentaire.
+### Semaine 1 : Collecte et Exploration des Données
 
-2. **Jour 2 : Téléchargement et structuration des données**
-   - [ ] Télécharger le dataset ou configurer une API pour récupérer les paroles.
-   - [ ] Organiser les fichiers dans des dossiers séparés par genre.
-   - [ ] Créer un script pour automatiser la collecte des paroles, si nécessaire, et collecter environ 500-1000 chansons par genre.
+1. **Configuration de l'environnement de travail**
+   - [ ] Installer toutes les bibliothèques nécessaires pour la gestion des données (par exemple, pandas, numpy) et la visualisation (matplotlib, seaborn).
+   - [ ] Créer une structure initiale de votre repository GitHub avec des dossiers pour les scripts (`src`), les données (`data`), et les notebooks d'exploration (`notebooks`).
 
-3. **Jour 3 : Nettoyage initial des données**
-   - [ ] Créer un script pour normaliser les caractères (tout en minuscules).
-   - [ ] Supprimer la ponctuation et les caractères spéciaux.
-   - [ ] Tokeniser les paroles (transformer les chansons en liste de mots).
-   - [ ] Supprimer les stop words (mots peu informatifs) avec une liste adaptée à la langue choisie (anglais ou français).
+2. **Chargement des données et premières vérifications**
+   - [ ] Charger le dataset de 10 000 chansons avec leurs caractéristiques via l'API Spotify ou depuis une source de données existante.
+   - [ ] Vérifier l'intégrité des données : s'assurer qu'il n'y a pas de valeurs manquantes, notamment dans les colonnes critiques (track_id, genre, caractéristiques audio).
+   - [ ] Analyser la répartition des genres dans le dataset pour s’assurer que les données sont suffisamment équilibrées. Si un genre est sous-représenté, envisager des techniques de rééquilibrage (oversampling, undersampling).
 
-4. **Jour 4 : Structuration et sauvegarde des données nettoyées**
-   - [ ] Enregistrer les données nettoyées dans un format structuré (CSV ou JSON) avec colonnes : **genre**, **paroles nettoyées**, et **titre** (optionnel).
-   - [ ] Consolider le dataset nettoyé pour chaque genre en un seul fichier pour faciliter les manipulations ultérieures.
+3. **Exploration des caractéristiques de Spotify**
+   - [ ] Visualiser la distribution de chaque caractéristique Spotify (par exemple, `danceability`, `energy`, `loudness`) pour mieux comprendre leurs valeurs typiques et repérer d’éventuelles anomalies.
+   - [ ] Pour chaque caractéristique, calculer les statistiques descriptives (moyenne, médiane, écart-type) afin de comprendre les valeurs centrales et la variabilité.
 
-5. **Jour 5 : Analyse préliminaire des données**
-   - [ ] Analyser la distribution des chansons par genre pour vérifier l’équilibre entre les catégories.
-   - [ ] Rechercher les doublons ou incohérences dans les données.
-   - [ ] Documenter toutes les observations ou problèmes rencontrés dans un fichier texte pour référence future.
+4. **Analyse de la répartition des genres par caractéristiques**
+   - [ ] Créer des visualisations (par exemple, boxplots, histogrammes) pour observer comment certaines caractéristiques varient en fonction des genres. Par exemple :
+     - Un boxplot pour `energy` en fonction du genre pour voir si les genres dynamiques comme le rock ou la techno ont des valeurs d’énergie élevées.
+     - Un histogramme pour `tempo` pour comparer des genres avec des tempos typiquement rapides ou lents.
+   - [ ] Identifier des caractéristiques clés qui semblent différencier les genres les plus éloignés (ex. `acousticness` pour différencier la musique acoustique du rock ou de la techno).
 
-6. **Jour 6 : Planification de la pipeline NLP**
-   - [ ] Décider des étapes de transformation des paroles en données numériques (ex. vectorisation avec TF-IDF ou Word2Vec).
-   - [ ] Identifier les outils/bibliothèques nécessaires (ex. NLTK, spaCy) pour le traitement NLP.
-   - [ ] Créer un plan structuré de pipeline pour le traitement des données textuelles.
+5. **Préparer une liste de caractéristiques pertinentes**
+   - [ ] Sur la base des observations, sélectionner les caractéristiques qui semblent avoir un potentiel discriminant pour la prédiction de genres (par exemple, `danceability`, `energy`, `acousticness`, `valence`).
+   - [ ] Noter les caractéristiques à évaluer plus en profondeur lors de l’entraînement du modèle.
 
-7. **Jour 7 : Validation des données et documentation**
-   - [ ] Vérifier manuellement un échantillon de données pour s’assurer que le nettoyage et l'étiquetage sont corrects.
-   - [ ] Rédiger un fichier `README.md` pour documenter la structure du dataset et les étapes de pré-traitement.
-   - [ ] Archiver tous les scripts de nettoyage dans le répertoire du projet.
+6. **Documentation et conclusion de l'exploration**
+   - [ ] Rédiger un rapport préliminaire sur vos premières observations : quelles caractéristiques pourraient être les plus utiles pour prédire les genres ? Quelles tendances et relations avez-vous identifiées ?
+   - [ ] Discuter avec l’équipe des résultats initiaux pour décider si des ajustements sont nécessaires dans la préparation des données pour la suite du projet.
+
+---
