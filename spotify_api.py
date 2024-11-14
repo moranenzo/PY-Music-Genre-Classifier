@@ -96,7 +96,9 @@
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import csv
-import config  # Ensure config.py contains CLIENT_ID and CLIENT_SECRET
+#config.py 
+CLIENT_ID = "c4536e618eac4bde8a40fb861828b092"
+CLIENT_SECRET = "56deb037e3c54cc88e6071b30f6e5f18"
 
 # Initialize Spotify client
 def spotify_client():
