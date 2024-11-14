@@ -96,9 +96,7 @@
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import csv
-#config.py 
-CLIENT_ID = "c4536e618eac4bde8a40fb861828b092"
-CLIENT_SECRET = "56deb037e3c54cc88e6071b30f6e5f18"
+
 
 # Initialize Spotify client
 def spotify_client():
@@ -107,8 +105,8 @@ def spotify_client():
     Returns an authenticated Spotify client.
     """
     return spotipy.Spotify(auth_manager=SpotifyClientCredentials(
-        client_id=config.CLIENT_ID,
-        client_secret=config.CLIENT_SECRET
+        client_id="c4536e618eac4bde8a40fb861828b092",
+        client_secret="56deb037e3c54cc88e6071b30f6e5f18"
     ))
 
 # Fetch playlist tracks
