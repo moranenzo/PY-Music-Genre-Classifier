@@ -1,50 +1,56 @@
-### **Semaine 1 : Recherche et préparation des données (uniquement pour les paroles)**
+Voici un plan détaillé pour la **Semaine 1**, avec des étapes spécifiques pour chaque journée, afin de préparer et structurer le dataset de détection du genre musical basé sur les paroles :
 
-#### **1. Définir les objectifs précis et cadrer le projet**
-   - **Choisir les émotions à détecter** : Joie, tristesse et colère
-   - **Cadrage des objectifs** : Émotion pour chaque chanson
+### Semaine 1 : Définition et Préparation des Données
 
-#### **2. Collecte des données de paroles**
-   - **Rechercher des datasets de chansons étiquetées par émotion** :
-     - Par exemple, des plateformes comme *Genius Lyrics*, *Lyrics.com*, ou des bases de données open-source. Recherchez des datasets de paroles annotés pour une émotion spécifique.
-     - Alternativement, téléchargez un dataset de paroles générales et envisagez de l’étiqueter vous-même avec des émotions si aucun dataset étiqueté n’est disponible.
-   - **Sources de datasets annotés** : Explorez des corpus comme le *Dataset of Lyrics with Emotions* ou *GoEmotions* de Google (même si celui-ci ne concerne pas les chansons, il peut aider à enrichir votre vocabulaire émotionnel).
+---
 
-#### **3. Prétraitement des données textuelles**
-   - **Nettoyage de texte** :
-     - **Suppression des éléments non pertinents** : Enlever la ponctuation, les caractères spéciaux, les nombres, et les mots de remplissage ("oh", "ah", etc.) qui n'apportent pas d'information émotionnelle.
-     - **Normalisation** : Convertir tous les mots en minuscules pour uniformiser le texte.
-   
-   - **Tokenisation et Lemmatisation** :
-     - **Tokenisation** : Découper chaque chanson en mots ou en phrases.
-     - **Lemmatisation** : Transformer chaque mot en sa racine pour uniformiser les termes (par exemple, "aimait", "aimer" deviennent "aime").
-     - Utilisez des bibliothèques comme *NLTK* ou *spaCy* pour effectuer la tokenisation et la lemmatisation.
+#### Jour 1-2 : Choix des Genres et Identification des Sources de Données
+1. **Identifier les genres à cibler** :
+   - Discutez avec l’équipe pour sélectionner environ 5 à 7 genres de musique distincts et bien représentés. Privilégiez des genres populaires et variés tels que *rock*, *rap*, *pop*, *jazz*, *country*, pour maximiser la diversité du modèle.
+   - Assurez-vous que chaque genre choisi ait un vocabulaire distinctif qui pourrait être reconnu par un modèle NLP (Natural Language Processing).
 
-   - **Suppression des stop words** : Filtrer les mots les plus fréquents qui n’ajoutent pas de valeur émotionnelle (ex. "le", "de", "et"). Assurez-vous que la liste des stop words exclut les mots à potentiel émotionnel.
+2. **Recherche de datasets de paroles** :
+   - Identifiez des sources de données adaptées. Quelques options :
+     - **Datasets publics** : Explorez le *Million Song Dataset*, *Genius Lyrics* ou le *GTZAN* pour voir s’ils contiennent des paroles étiquetées par genre.
+     - **API d’accès aux paroles** : Si besoin, utilisez des API comme **Genius** ou **Musixmatch** pour collecter directement des paroles. Notez les limites d’accès de chaque API.
 
-#### **4. Création d’un lexique d’émotions pour la base des émotions choisies**
-   - **Construire un lexique émotionnel** :
-     - Établir une liste de mots associés à chaque émotion (ex. "heureux", "sourire", "joie" pour la joie ; "triste", "perdu", "pleurer" pour la tristesse, etc.).
-     - S’appuyer sur des lexiques préexistants comme le *NRC Emotion Lexicon* pour un vocabulaire large et étiqueté, que vous pourrez adapter à des paroles de chansons.
-     - Tester les mots du lexique sur un petit échantillon de données pour vérifier leur pertinence dans un contexte de chanson.
+#### Jour 3-4 : Téléchargement et Pré-traitement des Données
+1. **Collecte des données** :
+   - Si un dataset contenant les paroles par genre est disponible, téléchargez-le et organisez-le en sous-dossiers par genre.
+   - Si vous utilisez une API pour extraire les paroles, commencez par créer un script de récupération automatisée, en veillant à ne pas dépasser les limites d’appel de l’API. Récupérez environ 500 à 1000 chansons par genre, si possible.
 
-   - **Raffinement du lexique pour chaque émotion** :
-     - Ajouter des synonymes ou variantes de mots-clés pertinents au contexte musical.
-     - Si certains mots-clés sont trop courants et ambigus dans les chansons, affinez le lexique en priorisant des mots spécifiques et représentatifs.
+2. **Pré-traitement des paroles** :
+   - Créez un premier script pour le nettoyage des paroles. Pour chaque chanson, exécutez les étapes suivantes :
+     - **Normalisation des caractères** : Convertissez tout en minuscules pour uniformiser le texte.
+     - **Suppression des ponctuations et des caractères spéciaux** : Retirez les caractères non nécessaires pour ne garder que les mots.
+     - **Tokenisation** : Séparez chaque chanson en une liste de mots (tokens) pour faciliter l’analyse.
+     - **Suppression des stop words** : Enlevez les mots très fréquents et peu informatifs (*le*, *de*, *et*, etc.) en utilisant une liste de stop words pour le français ou l’anglais, selon la langue choisie.
+   - Enregistrez les données nettoyées dans un format structuré (CSV ou JSON), avec les paroles et leur genre.
 
-#### **5. Préparer la structure des données pour le modèle**
-   - **Structurer les données** :
-     - Créer un tableau avec les colonnes suivantes pour chaque chanson : *ID de la chanson*, *Paroles nettoyées*, *Emotion annotée* (si disponible), et *ID d'émotion (pour la classification)*.
-     - Diviser les chansons en jeu d’entraînement et de test pour les phases ultérieures de modélisation.
+#### Jour 5 : Standardisation et Analyse Préliminaire des Données
+1. **Structuration du dataset** :
+   - Créez une structure uniforme pour chaque fichier de paroles, avec les colonnes **“genre”**, **“paroles nettoyées”** et, éventuellement, **“titre”**.
+   - Sauvegardez le dataset complet sous un format pratique (ex. CSV ou DataFrame en Python), qui facilitera les manipulations ultérieures.
 
-   - **Équilibrage du dataset** :
-     - Vérifiez si chaque émotion est représentée équitablement dans les données. Si une émotion est surreprésentée, vous pouvez effectuer un échantillonnage aléatoire ou utiliser une technique de sur-échantillonnage.
+2. **Analyse préliminaire** :
+   - Effectuez un aperçu des données pour repérer les incohérences ou les doublons.
+   - Vérifiez la distribution des paroles par genre pour s’assurer qu’aucun genre n’est sur- ou sous-représenté de manière significative.
+   - Documentez toute particularité ou irrégularité dans les données, comme des genres avec des paroles plus courtes ou un vocabulaire limité.
 
-#### **6. Validation des données et vérifications finales**
-   - **Vérifier la qualité des données** :
-     - Analyser manuellement un échantillon pour s'assurer que les paroles et les annotations sont bien alignées avec les émotions prévues.
-     - Nettoyer les incohérences restantes, comme les morceaux ayant peu de contenu émotionnel clair, pour éviter des prédictions erronées.
-   - **Révisions finales** :
-     - Faire un dernier contrôle de qualité sur le lexique émotionnel, le nettoyage de texte, et la structure des données avant de passer à la phase de modélisation.
+#### Jour 6-7 : Planification de la Pipeline NLP et Validation des Données
+1. **Conception de la pipeline NLP** :
+   - Identifiez les étapes du pipeline NLP pour la transformation de texte en données exploitables. Cela pourrait inclure la vectorisation (avec TF-IDF, Word2Vec ou un autre modèle d’embedding).
+   - Notez les outils et bibliothèques à utiliser pour le traitement NLP, comme **NLTK** ou **spaCy**.
 
-Fin de semaine: disposer de données propres et structurées, prêtes à être utilisées pour la modélisation d’émotions dans les paroles.
+2. **Validation finale des données** :
+   - Vérifiez manuellement un échantillon de données pour vous assurer que le nettoyage est complet et que chaque chanson est bien étiquetée par genre.
+   - Documentez les étapes de préparation des données et créez un fichier `README.md` dans le répertoire de données pour décrire la structure du dataset et les étapes de pré-traitement.
+
+---
+
+### Livrables de la Semaine 1
+- **Dataset structuré** avec les paroles nettoyées et étiquetées par genre, au format CSV ou JSON.
+- **Scripts de pré-traitement** pour nettoyer, tokeniser et structurer les données.
+- **Documentation du dataset** dans un fichier `README.md` détaillant la structure et les étapes de préparation.
+
+Avec cette première semaine structurée, vous aurez un dataset prêt et nettoyé pour le travail de modélisation à venir !
