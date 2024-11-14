@@ -5,32 +5,34 @@
 
 <h2>Project Structure</h2>
 <pre>
-Emotion-Detection-In-Lyrics/
-├── README.md
+Genre-Detection-with-Spotify-API/
+├── README.md                     # Project description, installation guide, and usage instructions
 ├── data/
-│   ├── raw/                   # Contient les fichiers bruts de paroles avant traitement
-│   ├── processed/             # Données nettoyées et structurées prêtes pour la modélisation
-│   └── lexicons/              # Lexiques spécifiques d’émotions (ex. NRC Emotion Lexicon)
+│   ├── raw/                      # Raw data extracted from the Spotify API
+│   ├── processed/                # Cleaned and formatted data ready for modeling
+│   └── samples/                  # Data samples for quick testing
 ├── notebooks/
-│   ├── 01_data_collection.ipynb       # Notebook pour la collecte de données de paroles
-│   ├── 02_data_cleaning.ipynb         # Notebook pour le nettoyage et la préparation des données
-│   ├── 03_exploratory_analysis.ipynb  # Notebook pour l'analyse exploratoire des paroles
-│   ├── 04_model_training.ipynb        # Notebook pour l'entraînement des modèles de machine learning
-│   └── 05_model_evaluation.ipynb      # Notebook pour l’évaluation du modèle et les tests finaux
+│   ├── 01_data_collection.ipynb        # Notebook for data collection via the Spotify API
+│   ├── 02_data_cleaning.ipynb          # Notebook for cleaning and preprocessing the data
+│   ├── 03_feature_exploration.ipynb    # Notebook for exploratory data analysis of features
+│   ├── 04_model_training.ipynb         # Notebook for training classification models
+│   └── 05_model_evaluation.ipynb       # Notebook for evaluating and visualizing model performance
 ├── src/
-│   ├── data_preprocessing.py    # Scripts pour le nettoyage et le prétraitement des paroles
-│   ├── emotion_lexicon.py       # Scripts pour gérer le lexique des émotions
-│   ├── model_training.py        # Scripts pour l’entraînement et la sauvegarde du modèle
-│   ├── model_evaluation.py      # Scripts pour l’évaluation du modèle
-│   └── utils.py                 # Fonctions utilitaires (ex. chargement de données, métriques)
+│   ├── data_collection.py         # Script to collect data from the Spotify API
+│   ├── data_preprocessing.py      # Script for cleaning and preprocessing the data
+│   ├── feature_engineering.py     # Script for feature creation and selection
+│   ├── model_training.py          # Script for training and saving the models
+│   ├── model_evaluation.py        # Script for evaluation and performance metrics
+│   └── utils.py                   # Utility functions (e.g., data loading, metrics, etc.)
 ├── models/
-│   └── trained_model.pkl        # Fichier du modèle entraîné sauvegardé
+│   └── trained_genre_model.pkl    # Saved trained genre classification model
 ├── reports/
-│   ├── figures/                 # Graphiques et visualisations des résultats d’analyse
-│   └── final_report.md          # Rapport final avec explication de la méthodologie, résultats et conclusions
+│   ├── figures/                   # Graphs and visualizations from analysis and results
+│   └── final_report.md            # Final report with methodology, results, and conclusions
 ├── tests/
-│   ├── test_data_preprocessing.py    # Tests unitaires pour le prétraitement de données
-│   ├── test_model_training.py        # Tests unitaires pour l’entraînement de modèle
-│   └── test_model_evaluation.py      # Tests unitaires pour l’évaluation du modèle
-└── requirements.txt
+│   ├── test_data_collection.py    # Unit tests for data collection
+│   ├── test_data_preprocessing.py # Unit tests for data preprocessing
+│   ├── test_model_training.py     # Unit tests for model training
+│   └── test_model_evaluation.py   # Unit tests for model evaluation
+└── requirements.txt               # List of project dependencies
 </pre>
