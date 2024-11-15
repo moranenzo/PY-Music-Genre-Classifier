@@ -110,36 +110,36 @@ def spotify_client():
     ))
 
 # Fetch playlist tracks
-def fetch_playlist_tracks(sp, playlist_id):
+def fetch_playlist_tracks(playlist_id):
     """
-    Fetch all tracks from a Spotify playlist.
-    :param sp: Initialized Spotipy client.
-    :param playlist_id: Spotify playlist ID.
-    :return: A list of dictionaries containing track details.
+    Fetch all tracks from a Spotify playlist. 
+    Params:
+        -playlist_id: Spotify playlist ID.
+    Returns a list of dictionaries containing track details.
     """
     tracks = []
-    results = sp.playlist_tracks(playlist_id)
+    results = spotify_client().playlist_tracks(playlist_id)
     while results:
         for item in results['items']:
             track = item['track']
             if track:  # Ensure the track is not None
                 tracks.append(track)
-        results = sp.next(results) if results['next'] else None
+        results = spotify_client().next(results) if results['next'] else None
     return tracks
 
 # Fetch detailed track information
-def fetch_track_data(sp, tracks):
+def fetch_track_data(tracks):
     """
     Fetch metadata and audio features for each track in the playlist.
-    :param sp: Initialized Spotipy client.
-    :param tracks: List of tracks from the playlist.
-    :return: A list of dictionaries containing track metadata and audio features.
+    Params:
+        -tracks: List of tracks from the playlist.
+    Returns a list of dictionaries containing track metadata and audio features.
     """
     track_data = []
 
     for track in tracks:
         track_id = track['id']
-        audio_features = sp.audio_features([track_id])[0]
+        audio_features = spotify_client().audio_features([track_id])[0]
         if audio_features:  # Ensure audio features are available
             artist_name = ", ".join([artist['name'] for artist in track['artists']])
             track_data.append({
@@ -168,6 +168,7 @@ def fetch_track_data(sp, tracks):
 def save_to_csv(data, filename):
     """
     Save the list of track data to a CSV file.
+    Params:
     :param data: List of dictionaries containing track details.
     :param filename: Output CSV file name.
     """
@@ -178,7 +179,25 @@ def save_to_csv(data, filename):
         writer.writerows(data)
     print(f"Data saved to {filename}")
 
-# Main function
+
+def get_playlists_data_to_csv(playlist_ids):
+    """This function allows to fetch the data from different playlists into a csv 
+    Params:
+        - playlist_ids: a list of playlists we want to fetch our data from
+    """
+    track_data=[]
+    for playlist in playlist_ids: 
+        print(f"Fetching playlist {playlist} tracks...")
+        tracks = fetch_playlist_tracks(playlist)
+        print("Fetching track data...")
+        track_data+=(fetch_track_data(tracks))
+    if track_data:
+        save_to_csv(track_data, "playlist_database.csv")
+    else:
+        print("No data to save.")
+        
+        
+"""# Main function
 if __name__ == "__main__":
     # Initialize Spotify client
     sp = spotify_client()
@@ -198,4 +217,7 @@ if __name__ == "__main__":
     if track_data:
         save_to_csv(track_data, "playlist_database.csv")
     else:
-        print("No data to save.")
+        print("No data to save.")"""
+
+
+get_playlists_data_to_csv(["37i9dQZF1EQnqst5TRi17F","37i9dQZF1EIcHiudhv2qdb"])
