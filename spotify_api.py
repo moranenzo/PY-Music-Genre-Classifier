@@ -79,13 +79,21 @@ def get_playlists_data_to_csv(playlist_ids):
     Params:
         - playlist_ids: a list of playlists we want to fetch our data from
     """
+    names=[]
     track_data=[]
+    file_name=''
     for playlist in playlist_ids: 
         print(f"Fetching playlist {playlist} tracks...")
         tracks = fetch_playlist_tracks(playlist)
         print("Fetching track data...")
         track_data+=(fetch_track_data(tracks))
+    for id in playlist_ids:
+        names.append(spotify_client().playlist(id)['name'])
+    for name in names:
+        file_name+=name+'+'
+    file_name=file_name[:-1]
+    print(file_name)
     if track_data:
-        save_to_csv(track_data, f"playlist{playlist_ids[0][0]}_database.csv")
+        save_to_csv(track_data, f"playlists_{file_name}_data.csv")
     else:
         print("No data to save.")
