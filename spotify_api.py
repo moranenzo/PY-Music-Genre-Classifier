@@ -47,26 +47,15 @@ def fetch_track_data(tracks):
         audio_features = spotify_client().audio_features([track_id])[0]
         if audio_features:  # Ensure audio features are available
             artist_name = ", ".join([artist['name'] for artist in track['artists']])
-            track_data.append({
-                "Track Name": track['name'],
+            dict_track={"Track Name": track['name'],
                 "Artists": artist_name,
                 "Track ID": track_id,
                 "Popularity": track['popularity'],
                 "Duration (ms)": track['duration_ms'],
-                "Explicit": track['explicit'],
-                "Danceability": audio_features['danceability'],
-                "Energy": audio_features['energy'],
-                "Key": audio_features['key'],
-                "Loudness": audio_features['loudness'],
-                "Mode": audio_features['mode'],
-                "Speechiness": audio_features['speechiness'],
-                "Acousticness": audio_features['acousticness'],
-                "Instrumentalness": audio_features['instrumentalness'],
-                "Liveness": audio_features['liveness'],
-                "Valence": audio_features['valence'],
-                "Tempo": audio_features['tempo'],
-                "Time Signature": audio_features['time_signature']
-            })
+                "Explicit": track['explicit']}
+            for key in audio_features.keys():
+                dict_track[key]=audio_features[key]
+            track_data.append(dict_track)
     return track_data
 
 # Save data to a CSV file
@@ -97,6 +86,6 @@ def get_playlists_data_to_csv(playlist_ids):
         print("Fetching track data...")
         track_data+=(fetch_track_data(tracks))
     if track_data:
-        save_to_csv(track_data, "playlist_database.csv")
+        save_to_csv(track_data, f"playlist{playlist_ids[0][0]}_database.csv")
     else:
         print("No data to save.")
