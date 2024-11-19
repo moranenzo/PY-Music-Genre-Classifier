@@ -13,6 +13,19 @@ def spotify_client():
         client_id="c4536e618eac4bde8a40fb861828b092",
         client_secret="56deb037e3c54cc88e6071b30f6e5f18"
     ))
+    
+def fetch_artist_genre(track):
+    """This function fetches the genre of an artist with a track from this artist, it will be 
+    considerated as the genre of the song later
+
+    Args:
+        track a dict the countains infos about the track
+
+    Returns: genre a string that is the genre of an artist
+        
+    """
+    artist=track['artists'][0]['id']
+    return spotify_client().artist(artist)['genres'][0]
 
 # Fetch playlist tracks
 def fetch_playlist_tracks(playlist_id):
@@ -41,18 +54,19 @@ def fetch_track_data(tracks):
     Returns a list of dictionaries containing track metadata and audio features.
     """
     track_data = []
-
+    
     for track in tracks:
         track_id = track['id']
         audio_features = spotify_client().audio_features([track_id])[0]
+        genre=fetch_artist_genre(track)
         if audio_features:  # Ensure audio features are available
             artist_name = ", ".join([artist['name'] for artist in track['artists']])
-            dict_track={"Track Name": track['name'],
-                "Artists": artist_name,
-                "Track ID": track_id,
-                "Popularity": track['popularity'],
-                "Duration (ms)": track['duration_ms'],
-                "Explicit": track['explicit']}
+            dict_track={"track Name": track['name'],
+                "artists": artist_name,
+                "track_id": track_id,
+                "popularity": track['popularity'],
+                "duration_ms": track['duration_ms'],
+                "explicit": track['explicit'], 'genre': genre}
             for key in audio_features.keys():
                 dict_track[key]=audio_features[key]
             track_data.append(dict_track)
@@ -97,3 +111,4 @@ def get_playlists_data_to_csv(playlist_ids):
         save_to_csv(track_data, f"playlists_{file_name}_data.csv")
     else:
         print("No data to save.")
+
