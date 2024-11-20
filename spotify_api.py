@@ -25,7 +25,10 @@ def fetch_artist_genre(track):
         
     """
     artist=track['artists'][0]['id']
-    return spotify_client().artist(artist)['genres'][0]
+    if spotify_client().artist(artist)['genres'] != []:
+        return spotify_client().artist(artist)['genres'][0]
+    else:
+        return 'N/A'
 
 # Fetch playlist tracks
 def fetch_playlist_tracks(playlist_id):
@@ -57,6 +60,7 @@ def fetch_track_data(tracks):
     
     for track in tracks:
         track_id = track['id']
+        print(track['name'])
         audio_features = spotify_client().audio_features([track_id])[0]
         genre=fetch_artist_genre(track)
         if audio_features:  # Ensure audio features are available
