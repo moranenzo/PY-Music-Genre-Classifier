@@ -1,6 +1,7 @@
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import csv
+import time
 
 
 # Initialize Spotify client
@@ -45,6 +46,7 @@ def fetch_playlist_tracks(playlist_id):
             track = item['track']
             if track:  # Ensure the track is not None
                 tracks.append(track)
+        time.sleep(0.1)
         results = spotify_client().next(results) if results['next'] else None
     return tracks
 
@@ -116,3 +118,4 @@ def get_playlists_data_to_csv(playlist_ids):
     else:
         print("No data to save.")
 
+get_playlists_data_to_csv(['3BsxEMRSmNfSx6etRrg06y'])
