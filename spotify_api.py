@@ -59,10 +59,11 @@ def fetch_track_data(tracks):
     Returns a list of dictionaries containing track metadata and audio features.
     """
     track_data = []
-    
+    i=0
     for track in tracks:
         track_id = track['id']
-        print(track['name'])
+        i+=1
+        print(i)
         audio_features = spotify_client().audio_features([track_id])[0]
         genre=fetch_artist_genre(track)
         if audio_features:  # Ensure audio features are available
@@ -118,4 +119,55 @@ def get_playlists_data_to_csv(playlist_ids):
     else:
         print("No data to save.")
 
-get_playlists_data_to_csv(['3BsxEMRSmNfSx6etRrg06y'])
+
+def fetch_track_data_without_genre(tracks,genre):
+    """
+    Fetch metadata and audio features for each track in the playlist knowing the genre of the playlist
+    Params:
+        -tracks: List of tracks from the playlist.
+    Returns a list of dictionaries containing track metadata and audio features.
+    """
+    track_data = []
+    i=0
+    for track in tracks:
+        track_id = track['id']
+        i+=1
+        audio_features = spotify_client().audio_features([track_id])[0]
+        if audio_features:  # Ensure audio features are available
+            artist_name = ", ".join([artist['name'] for artist in track['artists']])
+            dict_track={"track Name": track['name'],
+                "artists": artist_name,
+                "track_id": track_id,
+                "popularity": track['popularity'],
+                "duration_ms": track['duration_ms'],
+                "explicit": track['explicit'], 'genre': genre}
+            for key in audio_features.keys():
+                dict_track[key]=audio_features[key]
+            track_data.append(dict_track)
+    return track_data
+
+def get_playlists_data_to_csv_with_genre(playlist_ids):
+    """This function allows to fetch the data from different playlists into a csv 
+    Params:
+        - playlist_ids: a dict whose keys are genres and values are playlists (strings)
+    """
+    names=[]
+    track_data=[]
+    file_name=''
+    for key in playlist_ids.keys(): 
+        print(f"Fetching playlist {playlist_ids[key]} tracks...")
+        tracks = fetch_playlist_tracks(playlist_ids[key])
+        print("Fetching track data...")
+        track_data+=(fetch_track_data_without_genre(tracks, key))
+    for key1 in playlist_ids.keys():
+        names.append(spotify_client().playlist(playlist_ids[key1])['name'])
+    for name in names:
+        file_name+=name+'+'
+    file_name=file_name[:-1]
+    print(file_name)
+    if track_data:
+        save_to_csv(track_data, f"playlists_{file_name}_data.csv")
+    else:
+        print("No data to save.")
+
+get_playlists_data_to_csv_with_genre({'rap':'37i9dQZF1DWYVURwQHUqnN'})
