@@ -170,4 +170,3 @@ def get_playlists_data_to_csv_with_genre(playlist_ids):
     else:
         print("No data to save.")
 
-get_playlists_data_to_csv_with_genre({'rap':'37i9dQZF1DWYVURwQHUqnN'})
