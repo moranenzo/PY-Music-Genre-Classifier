@@ -1,0 +1,11 @@
+--> TOM
+client_id="c4536e618eac4bde8a40fb861828b092",
+        client_secret="56deb037e3c54cc88e6071b30f6e5f18" 
+
+--> BOZO
+client_id="d666ee3ae4c94b85945c3dba39776f4f",
+        client_secret="c1973a77acbe48c0b2f105e4f57d7d46"    
+
+--> MARTIN
+client_id:"35ed186039d7431f96598b681cb0b10c",
+    client_secret="ca3afff86b5448398a78ded36c90e96f"
