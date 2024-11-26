@@ -11,7 +11,7 @@ def spotify_client():
     Returns an authenticated Spotify client.
     """
     return spotipy.Spotify(auth_manager=SpotifyClientCredentials(
-        client_id:"35ed186039d7431f96598b681cb0b10c",
+        client_id="35ed186039d7431f96598b681cb0b10c",
         client_secret="ca3afff86b5448398a78ded36c90e96f"
     ))
     
@@ -77,9 +77,9 @@ def fetch_track_data(tracks):
             for key in audio_features.keys():
                 dict_track[key]=audio_features[key]
             track_data.append(dict_track)
-        if i==500:
+        if i==100:
             j+=1
-            save_to_csv(track_data, f"intermédiaire"{j})
+            save_to_csv(track_data, f"intermédiaire{j}")
             i=0
             time.sleep(60)
     return track_data
@@ -175,3 +175,4 @@ def get_playlists_data_to_csv_with_genre(playlist_ids):
     else:
         print("No data to save.")
 
+get_playlists_data_to_csv(['1G8IpkZKobrIlXcVPoSIuf'])
