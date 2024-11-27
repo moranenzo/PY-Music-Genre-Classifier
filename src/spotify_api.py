@@ -11,8 +11,8 @@ def spotify_client():
     Returns an authenticated Spotify client.
     """
     return spotipy.Spotify(auth_manager=SpotifyClientCredentials(
-        client_id="35ed186039d7431f96598b681cb0b10c",
-        client_secret="ca3afff86b5448398a78ded36c90e96f"
+        client_id="d666ee3ae4c94b85945c3dba39776f4f",
+        client_secret="c1973a77acbe48c0b2f105e4f57d7d46" 
     ))
     
 def fetch_artist_genre(track):
@@ -149,6 +149,11 @@ def fetch_track_data_without_genre(tracks,genre):
             for key in audio_features.keys():
                 dict_track[key]=audio_features[key]
             track_data.append(dict_track)
+        if i==100:
+            j+=1
+            save_to_csv(track_data, f"intermédiaire_realdb{j}")
+            i=0
+            time.sleep(60)
     return track_data
 
 def get_playlists_data_to_csv_with_genre(playlist_ids):
@@ -175,4 +180,14 @@ def get_playlists_data_to_csv_with_genre(playlist_ids):
     else:
         print("No data to save.")
 
-get_playlists_data_to_csv(['1G8IpkZKobrIlXcVPoSIuf'])
+get_playlists_data_to_csv_with_genre({
+    "Pop": '0ZwUMU8Kt8e141i5aqhDfD',
+    "Rock": '0ZwUMU8Kt8e141i5aqhDfD',
+    "Rap": '0ZwUMU8Kt8e141i5aqhDfD',
+    "Country": '33mU9g6y8nKFAOyiISor0G',
+    "Blues": '7BDUphylF8dfPKFo9Tvdr9',
+    "Metal": '1yYEy4MtNLVScj74wcPR7w',
+    "R_and_B": '7CI3NR7rvCkgiLhch1qprf',
+    "Classical_music": '5n9btvMZ52rxwozhQdKU7v',
+    "Jazz": '79Bcltku1dcD08JcAM29kL'
+})
