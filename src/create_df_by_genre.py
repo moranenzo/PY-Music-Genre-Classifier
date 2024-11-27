@@ -5,7 +5,7 @@ import time
 
 # Liste des genres et leurs playlists associées
 genres = {
-    "Pop": '0ZwUMU8Kt8e141i5aqhDfD',
+    "Pop": '7gqtGYFoCR3tAqTtEUQZTw',
     "Rock": '0ZwUMU8Kt8e141i5aqhDfD',
     "Rap": '0ZwUMU8Kt8e141i5aqhDfD',
     "Country": '33mU9g6y8nKFAOyiISor0G',
