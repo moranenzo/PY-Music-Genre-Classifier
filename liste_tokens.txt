@@ -7,5 +7,8 @@ client_id="d666ee3ae4c94b85945c3dba39776f4f",
         client_secret="c1973a77acbe48c0b2f105e4f57d7d46"    
 
 --> MARTIN
-client_id:"35ed186039d7431f96598b681cb0b10c",
+client_id="35ed186039d7431f96598b681cb0b10c",
     client_secret="ca3afff86b5448398a78ded36c90e96f"
+
+client_id='4f47400e292249a89252a09c2245424a'
+client_secret='926440227903411da30bc59a2712e2e9'
