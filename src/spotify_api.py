@@ -11,8 +11,8 @@ def spotify_client():
     Returns an authenticated Spotify client.
     """
     return spotipy.Spotify(auth_manager=SpotifyClientCredentials(
-        client_id="35ed186039d7431f96598b681cb0b10c",
-    client_secret="ca3afff86b5448398a78ded36c90e96f"
+        client_id="d9b0f1004f1e4cf1b4fe2b34ad6878c9",
+    client_secret="7753034ebadf42fcac3de6e4b64f2846"
     ))
     
 def fetch_artist_genre(track):
@@ -180,4 +180,11 @@ def get_playlists_data_to_csv_with_genre(playlist_ids):
     else:
         print("No data to save.")
 
-get_playlists_data_to_csv_with_genre({'Pop':'5OiJmHzQjduiZpSaKQehKX'})
+get_playlists_data_to_csv_with_genre({'rap' : '4KsrGBWG6gzBwGe9dx16OE', 
+                                      'country' : '33mU9g6y8nKFAOyiISor0G',
+                                      'blues' : '7BDUphylF8dfPKFo9Tvdr9',
+                                      'metal' : '1yYEy4MtNLVScj74wcPR7w',
+                                      'r_and_b' : '7CI3NR7rvCkgiLhch1qprf',
+                                      'classical_music' : '5n9btvMZ52rxwozhQdKU7v',
+                                      'jazz' : '79Bcltku1dcD08JcAM29kL',
+                                      'pop' : '7gqtGYFoCR3tAqTtEUQZTw'})
