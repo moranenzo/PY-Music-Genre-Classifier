@@ -1,10 +1,8 @@
 # Required imports
-import pandas as pd
 from catboost import CatBoostClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report
 from df_downloader import get_df
-from catboost import CatBoostClassifier
 
 df_path = "/tlaflotte/genre_detector/spotify_tracks.csv"
 
@@ -27,6 +25,7 @@ def preprocess_data(df):
     X = features
     y = df[target]
     return train_test_split(X, y, test_size=0.2, random_state=42)
+
 
 # Train the model
 def train_model(X_train, y_train):
