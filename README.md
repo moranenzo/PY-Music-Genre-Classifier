@@ -7,10 +7,6 @@
 <pre>
 Genre-Detection-with-Spotify-API/
 ├── README.md                     # Project description, installation guide, and usage instructions
-├── data/
-│   ├── raw/                      # Raw data extracted from the Spotify API
-│   ├── processed/                # Cleaned and formatted data ready for modeling
-│   └── samples/                  # Data samples for quick testing
 ├── notebooks/
 │   ├── 01_data_collection.ipynb        # Notebook for data collection via the Spotify API
 │   ├── 02_data_cleaning.ipynb          # Notebook for cleaning and preprocessing the data
@@ -35,4 +31,9 @@ Genre-Detection-with-Spotify-API/
 │   ├── test_model_training.py     # Unit tests for model training
 │   └── test_model_evaluation.py   # Unit tests for model evaluation
 └── requirements.txt               # List of project dependencies
+</pre>
+
+<h2>Data</h2>
+<pre>
+  The data frame we worked on, has been created by ourselves thanks to the api spotify. You can download it by using src/df_downloader.py
 </pre>
