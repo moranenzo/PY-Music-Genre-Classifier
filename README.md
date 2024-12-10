@@ -6,7 +6,6 @@
 <h2>Project Structure</h2>
 <pre>
 Genre-Detection-with-Spotify-API/
-├── README.md                     # Project description, installation guide, and usage instructions
 ├── notebooks/
 │   ├── 01_data_collection.ipynb        # Notebook for data collection via the Spotify API
 │   ├── 02_data_cleaning.ipynb          # Notebook for cleaning and preprocessing the data
@@ -30,7 +29,11 @@ Genre-Detection-with-Spotify-API/
 │   ├── test_data_preprocessing.py # Unit tests for data preprocessing
 │   ├── test_model_training.py     # Unit tests for model training
 │   └── test_model_evaluation.py   # Unit tests for model evaluation
-└── requirements.txt               # List of project dependencies
+├── models/                   # Saved trained models (if relevant)
+├── results/                  # Results and generated figures
+├── README.md                 # Project description
+├── requirements.txt          # Dependencies (s3fs, pandas, sklearn, etc.)
+└── .gitignore                # Files to ignore (notebooks, models, raw data)
 </pre>
 
 <h2>Data</h2>
