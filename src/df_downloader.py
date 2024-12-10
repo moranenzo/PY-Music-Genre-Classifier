@@ -18,3 +18,5 @@ def get_df(file_path):
     - Requires the pandas library.
     """
     return pd.read_csv("https://minio.lab.sspcloud.fr" + file_path)
+
+# from df_downloader import get_df
