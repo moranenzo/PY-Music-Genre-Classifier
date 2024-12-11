@@ -1,11 +1,11 @@
-<h1> PY-project </h1>
+<h1> PY-Music-Genre-Classifier </h1>
 <p>deadline : Dimanche 29 Décembre à 23h59</p>
 <p>soutenances : Vendredi 10 Janvier</p>
 <p>https://pythonds.linogaliana.fr/content/annexes/evaluation.html</p>
 
 <h2>Project Structure</h2>
 <pre>
-Genre-Detection-with-Spotify-API/
+PY-Music-Genre-Classifier/
 ├── notebooks/
 │   ├── 01_data_collection.ipynb        # Notebook for data collection via the Spotify API
 │   ├── 02_data_cleaning.ipynb          # Notebook for cleaning and preprocessing the data
