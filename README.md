@@ -43,9 +43,6 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -122,7 +119,7 @@ PY-Optimal-Transport-Median
 <h1 id="getting-started">Getting Started</h1>
 <p>Follow these steps to set up the project locally:</p>
 
-<h3>Prerequisites</h3>
+<h3 id="prerequisites">Prerequisites</h3>
 <ul>
   <li>Python 3.x installed</li>
   <li>Required libraries:
@@ -131,7 +128,7 @@ PY-Optimal-Transport-Median
 </ul>
 
 
-<h2 id="installation">Installation</h2>
+<h3 id="installation">Installation</h3>
 <ol>
   <li>Clone the repo:
     <pre><code>git clone https://github.com/moranenzo/PY-Music-Genre-Classifier.git</code></pre>
@@ -148,7 +145,7 @@ PY-Optimal-Transport-Median
 </ol>
 
 
-<h2 id="usage">Usage</h2>
+<h1 id="usage">Usage</h1>
 <p>Run the following command to train the model:</p>
 <pre><code>python src/train_model.py</code></pre>
 
