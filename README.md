@@ -14,7 +14,7 @@
 <h1 align="center">PY-Music-Genre-Classifier</h3>
 
   <p>
-    project_description
+    The <strong>PY-Music-Genre-Classifier</strong> predicts music genres based on audio features extracted from Spotify's API. The project uses supervised learning models such as CatBoost, LightGBM, and RandomForest to classify tracks into predefined genres.
     <br />
     <a href="https://github.com/moranenzo/PY-Music-Genre-Classifier"><strong>Explore the docs »</strong></a>
     <br />
@@ -53,7 +53,7 @@
 <h1 id="about-the-project">About the project</h1>
 
 <p>
-The <strong>PY-Music-Genre-Classifier</strong> predicts music genres based on audio features extracted from Spotify's API. The project uses supervised learning models such as CatBoost, LightGBM, and RandomForest to classify tracks into predefined genres.
+This project leverages Spotify's API to construct a dataset of audio features and track metadata for music genre classification. The pipeline includes automated data collection, preprocessing, and feature engineering. Supervised learning models such as CatBoost, LightGBM, and RandomForest are trained and evaluated using performance metrics like accuracy and F1-score, enabling accurate genre prediction.
 </p>
 <p> Key Features :
   <br />- Data preprocessing and feature engineering.
@@ -62,22 +62,21 @@ The <strong>PY-Music-Genre-Classifier</strong> predicts music genres based on au
 </p>
 
 
-<h2 id="repository-structure">📁 <strong>Repository Structure</strong></h2>
+<h2 id="repository-structure">📁 Repository Structure</h2>
 <pre>
-PY-Optimal-Transport-Median
-├── <strong>README.md</strong> : Overview and usage instructions.
-├── <strong>docs/</strong> : Reference materials (papers, reports, etc.).
-├── <strong>data/</strong> : Dataset and its detailed analysis.
-│   ├── <strong>analysis/</strong> : Descriptive analysis of the database variables.
-│   └── <strong>raw/</strong> : Database used (ANSUR II Male and Female)
-├── <strong>src/</strong> : Jupyter notebooks and Python scripts.
-│   ├── <strong>utils.py</strong> : Reusable utility functions.
-│   └── <strong>notebooks</strong> : Four Jupyter notebooks illustrating key processes.
-├── <strong>results/</strong> : Outputs (e.g., figures, graphs).
-└── <strong>reports/</strong> : Final documents.
-    ├── <strong>internship_report.pdf</strong>
-    ├── <strong>summary_note.pdf</strong>
-    └── <strong>presentation_slides.pptx</strong>
+Music-Genre-Classifier/
+├── data/                     # Dossier contenant les jeux de données (si possible, exclure les fichiers lourds du repo)
+├── notebooks/                # Notebooks Jupyter pour exploration et visualisation
+│   └── data_processing.ipynb
+├── src/                      # Code source
+│   ├── import_data.py        # Script d'import des données via l'API Spotify
+│   ├── train_model.py        # Entraînement du modèle de ML
+│   └── utils.py              # Fonctions utiles et scripts partagés
+├── models/                   # Sauvegardes des modèles entraînés (si pertinent)
+├── results/                  # Résultats et figures générées
+├── README.md                 # Description du projet
+├── requirements.txt          # Dépendances (s3fs, pandas, sklearn, etc.)
+└── .gitignore                # Fichiers à ignorer (notebooks, modèles, données brutes)
 </pre>
 
 
