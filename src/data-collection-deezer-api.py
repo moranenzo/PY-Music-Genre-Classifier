@@ -4,9 +4,9 @@ import time
 
 # API KEYS (remplacez par vos clés API si nécessaire)
 LASTFM_API_KEY = 3d08e00c985d4d4f2497254924de0085
-Shared_secret = d3aa88fd5684b881a8270eda9f24e88f
+Shared_secret = d3aa88fd5684b881a8270eda9f24e88fimport requests
 
-# Fonctions de requête API
+# API request functions
 
 def fetch_from_deezer(track_name, artist_name):
     url = f"https://api.deezer.com/search?q=track:\"{track_name}\" artist:\"{artist_name}\""
@@ -24,7 +24,7 @@ def fetch_from_musicbrainz(track_name):
     response = requests.get(url)
     return response.json() if response.status_code == 200 else {}
 
-# Fonction principale
+# Main function
 
 def fetch_music_metadata(tracks):
     data = []
@@ -32,7 +32,7 @@ def fetch_music_metadata(tracks):
     for track_name, artist_name in tracks:
         record = {"track_name": track_name, "artist_name": artist_name}
 
-        # Récupération des données depuis Deezer
+        # Fetch data from Deezer
         deezer_data = fetch_from_deezer(track_name, artist_name)
         if deezer_data.get("data"):
             deezer_info = deezer_data["data"][0]
@@ -44,7 +44,7 @@ def fetch_music_metadata(tracks):
                 "deezer_popularity": deezer_info.get("rank"),
             })
 
-        # Récupération des données depuis Last.fm
+        # Fetch data from Last.fm
         lastfm_data = fetch_from_lastfm(track_name, artist_name)
         if lastfm_data.get("track"):
             track_info = lastfm_data["track"]
@@ -54,7 +54,7 @@ def fetch_music_metadata(tracks):
                 "lastfm_tags": [tag["name"] for tag in track_info.get("toptags", {}).get("tag", [])],
             })
 
-        # Récupération des données depuis MusicBrainz
+        # Fetch data from MusicBrainz
         musicbrainz_data = fetch_from_musicbrainz(track_name)
         if musicbrainz_data.get("recordings"):
             mb_info = musicbrainz_data["recordings"][0]
@@ -65,11 +65,11 @@ def fetch_music_metadata(tracks):
             })
 
         data.append(record)
-        time.sleep(1)  # Respect du taux limite des API
+        time.sleep(1)  # Respect API rate limits
 
     return pd.DataFrame(data)
 
-# Exemple d'utilisation
+# Example usage
 if __name__ == "__main__":
     tracks = [("Shape of You", "Ed Sheeran"), ("Blinding Lights", "The Weeknd")]
     df = fetch_music_metadata(tracks)
