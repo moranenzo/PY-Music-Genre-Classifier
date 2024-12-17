@@ -26,8 +26,7 @@ def load_data(path):
 # Data preprocessing
 def preprocess_data(df):
     target = "track_genre"  # Target variable
-    features = df.drop(columns=[target, "track_id", "track_name", "artists"])
-    X = features
+    X = df.drop(columns=[target, "track_id", "track_name", "artists"])
     y = df[target]
     return train_test_split(X, y, test_size=0.2, random_state=42)
 
@@ -41,6 +40,7 @@ cat_model = CatBoostClassifier(
         verbose=100
     )
 
+
 # Dummy Models
 rf_model = RandomForestClassifier()
 xgb_model = xgb.XGBClassifier()
@@ -51,6 +51,7 @@ lgb_model = lgb.LGBMClassifier()
 def train_model(model, X_train, y_train):
     model.fit(X_train, y_train)
     return model
+
 
 # Evaluate the model
 def evaluate_model(model, X_test, y_test):
