@@ -4,11 +4,11 @@
 
 
 
-<!-- PROJECT LOGO -->
+<!-- PROJECT BANNER -->
 <br />
 <div align="center">
   <a href="https://github.com/moranenzo/PY-Music-Genre-Classifier">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="banner.png">
   </a>
 
 <h1 align="center">PY-Music-Genre-Classifier</h3>
