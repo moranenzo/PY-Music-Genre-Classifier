@@ -179,12 +179,3 @@ def get_playlists_data_to_csv_with_genre(playlist_ids):
         save_to_csv(track_data, f"playlists_{file_name}_data.csv")
     else:
         print("No data to save.")
-
-get_playlists_data_to_csv_with_genre({'rap' : '4KsrGBWG6gzBwGe9dx16OE', 
-                                      'country' : '33mU9g6y8nKFAOyiISor0G',
-                                      'blues' : '7BDUphylF8dfPKFo9Tvdr9',
-                                      'metal' : '1yYEy4MtNLVScj74wcPR7w',
-                                      'r_and_b' : '7CI3NR7rvCkgiLhch1qprf',
-                                      'classical_music' : '5n9btvMZ52rxwozhQdKU7v',
-                                      'jazz' : '79Bcltku1dcD08JcAM29kL',
-                                      'pop' : '7gqtGYFoCR3tAqTtEUQZTw'})
