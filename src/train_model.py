@@ -9,42 +9,23 @@ from sklearn.ensemble import RandomForestClassifier
 import xgboost as xgb
 import lightgbm as lgb
 
-df_path = "/tlaflotte/genre_detector/spotify_tracks.csv"
+df_path = "/tlaflotte/genre_detector/data_tracks_cleaned.csv"
 
 
 # Load the dataset
-def load_data(path):
-    try:
-        df = get_df(path)
-        print("Data successfully loaded.")
-        return df
-    except FileNotFoundError:
-        print("Error: Data file not found.")
-        return None
+df = pd.read_csv("https://minio.lab.sspcloud.fr" + df_path)
 
 
-# Data preprocessing
-def preprocess_data(df):
-    target = "track_genre"  # Target variable
-    X = df.drop(columns=[target, "track_id", "track_name", "artists"])
-    y = df[target]
-    return train_test_split(X, y, test_size=0.2, random_state=42)
-
-
-# Dummy CatBoost model
-cat_model = CatBoostClassifier(
-        iterations=500,
-        learning_rate=0.1,
-        depth=8,
-        loss_function='MultiClass',
-        verbose=100
-    )
+# Best Hyperparameters
+rf_best_params = {'max_depth': 20, 'min_samples_split': 2, 'n_estimators': 4000}
+xgb_best_params =
+cat_best_params =
 
 
 # Dummy Models
-rf_model = RandomForestClassifier()
+rf_model = RandomForestClassifier(n_estimators=4000, max_features='sqrt', max_depth=20, min_samples_split=2, min_samples_leaf=1, bootstrap=True, criterion='gini' ,random_state=0)
 xgb_model = xgb.XGBClassifier()
-lgb_model = lgb.LGBMClassifier()
+cat_model = 
 
 
 # Train the model
@@ -65,9 +46,8 @@ def evaluate_model(model, X_test, y_test):
 
 # Main function
 if __name__ == "__main__":
-    df = load_data(df_path)
-    if df is not None:
-        X_train, X_test, y_train, y_test = preprocess_data(df)
-        model = train_model(cat_model, X_train, y_train)
-        evaluate_model(model, X_test, y_test)
-        save_model(model, model_name="catboost")
+    data = df.copy()
+    X_train, X_test, y_train, y_test = preprocess_data(df)
+    model = train_model(cat_model, X_train, y_train)
+    evaluate_model(model, X_test, y_test)
+    save_model(model, model_name="catboost")
