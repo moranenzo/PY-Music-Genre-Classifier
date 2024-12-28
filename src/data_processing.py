@@ -6,6 +6,8 @@ from sklearn.metrics import mean_absolute_error, r2_score
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
 from xgboost import XGBRegressor
+from sklearn.decomposition import PCA
+import pandas as pd
 
 def count_outliers_zscore(df, threshold=3):
     """
@@ -142,6 +144,30 @@ def test_random_forest_imputation(df, target_column, predictors, missing_rate=0.
 
     return mae, r2
 
+def impute_with_xgboost(df, target_col, predictors, test_size=0.2, random_state=42):
+    df_copy = df.copy()
+
+    train_data = df_copy[df_copy[target_col].notna()]
+    test_data = df_copy[df_copy[target_col].isna()]
+
+    if test_data.empty:
+        print(f"No missing values in {target_col}.")
+        return df_copy, None
+
+    X = train_data[predictors]
+    y = train_data[target_col]
+    X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=test_size, random_state=random_state)
+
+    xgb_model = XGBRegressor(n_estimators=100, learning_rate=0.1, max_depth=3, random_state=random_state)
+    xgb_model.fit(X_train, y_train)
+
+    X_test = test_data[predictors]
+    y_pred = xgb_model.predict(X_test)
+
+    df_copy.loc[test_data.index, target_col] = y_pred
+
+    return df_copy, xgb_model
+
 def evaluate_xgboost_model(df, model, target_col, predictors):
     """
     Évalue les performances du modèle XGBoost sur une colonne cible.
@@ -157,3 +183,56 @@ def evaluate_xgboost_model(df, model, target_col, predictors):
     r2 = r2_score(y_true, y_pred)
     
     return mae, r2
+
+def perform_PCA(df, continuous_vars, n_components=None):
+    """
+    Réalise une ACP sur les variables continues du DataFrame.
+    Args:
+        df (pd.DataFrame): DataFrame pandas
+        continuous_vars (list): Liste des noms des colonnes continues
+        n_components (int, optional): Nombre de composantes principales à conserver. 
+                                      Par défaut, égal à len(continuous_vars).
+    Returns:
+        pd.DataFrame: DataFrame avec les composantes principales
+        np.array: Variance expliquée par chaque composante principale
+    """
+    if n_components is None:
+        n_components = len(continuous_vars)
+    
+    df_pca = df[continuous_vars]
+    pca = PCA(n_components=n_components)
+    principal_components = pca.fit_transform(df_pca)
+    
+    # Créer un DataFrame avec les composantes principales
+    principal_df = pd.DataFrame(data=principal_components, 
+                                columns=[f'PC{i+1}' for i in range(n_components)])
+    
+    # Afficher la variance expliquée par chaque composante principale
+    components = pd.DataFrame(pca.components_, columns=df_pca.columns)
+    explained_variance = pca.explained_variance_ratio_
+    return principal_df, explained_variance, components
+
+def get_importance_with_random_forest(df,target):
+    """
+    Calcule l'importance des variables avec un modèle Random Forest.
+    Args:
+        df (pd.DataFrame): DataFrame pandas
+        features (list): Liste des noms des variables explicatives
+        target (str): Nom de la variable cible
+    Returns:
+        pd.Series: Importance des variables
+    """
+    X = df.drop('target', axis=1)
+    y = df['target_column']
+    
+    rf = RandomForestRegressor()
+    rf.fit(X, y)
+    
+    importances = rf.feature_importances_
+    feature_names = X.columns
+    
+    importance_df = pd.DataFrame({'Feature': feature_names, 'Importance': importances})
+    importance_df = importance_df.sort_values(by='Importance', ascending=False)
+    
+    return importance_df
+    
