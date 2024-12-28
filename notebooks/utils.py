@@ -1,21 +1,43 @@
-import joblib  # used to save Scikit-learn models as .pkl
 import s3fs
-import pandas as pd
-from scipy.stats import zscore
-from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_absolute_error, r2_score
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.model_selection import train_test_split
-from xgboost import XGBRegressor
-from sklearn.decomposition import PCA
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import csv
 import time
+from scipy.stats import zscore
+from sklearn.preprocessing import StandardScaler, normalize
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import (
+    train_test_split,
+    GridSearchCV,
+    RandomizedSearchCV,
+    validation_curve,
+)
+from sklearn.metrics import (
+    mean_absolute_error,
+    r2_score,
+    accuracy_score,
+    confusion_matrix,
+    recall_score,
+    f1_score,
+    zero_one_loss,
+    classification_report,
+)
+from sklearn.ensemble import (
+    RandomForestRegressor,
+    RandomForestClassifier,
+    GradientBoostingClassifier,
+)
+from xgboost import XGBRegressor, XGBClassifier
+from catboost import CatBoostClassifier
+import matplotlib.pyplot as plt
 import numpy as np
-import os
+import seaborn as sns
+import pandas as pd
+from sklearn.feature_selection import VarianceThreshold
+from sklearn.decomposition import PCA
+from pprint import pprint
+
+
 
 
 
@@ -475,3 +497,10 @@ def get_playlists_data_to_csv_with_genre(playlist_ids):
     else:
         print("No data to save.")
 
+def assign_category(genre):
+    for category, keywords in categories.items():
+        if genre in keywords:
+            return category
+        elif genre=='N/A':
+            return 
+    return "other"
