@@ -2,7 +2,7 @@
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report
 from df_downloader import get_df
-from utils import save_model
+from notebooks.utils import save_model
 
 from catboost import CatBoostClassifier
 from sklearn.ensemble import RandomForestClassifier
