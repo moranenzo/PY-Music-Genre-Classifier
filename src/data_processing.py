@@ -90,5 +90,7 @@ if __name__ == "__main__":
     scaler = StandardScaler()
     data[columns_to_standardize] = scaler.fit_transform(df_standardized[columns_to_standardize])
 
-    impute_with_random_forest(df, target_column='liveness', predictors=predictors)
-    impute_with_random_forest(df, target_column='valence', predictors=predictors)
+    impute_with_random_forest(data, target_column='liveness', predictors=predictors)
+    impute_with_random_forest(data, target_column='valence', predictors=predictors)
+
+    data.to_csv('spotify_tracks_cleaned.csv', index=False)
