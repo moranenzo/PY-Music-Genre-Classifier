@@ -1,11 +1,12 @@
 # Importation des librairies
 import pandas as pd
+import numpy as np
 
 from scipy.stats import zscore
 from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestRegressor
 
 file_path = "/tlaflotte/genre_detector/spotify_tracks.csv"
-
 
 
 # Téléchargement de la base de données
@@ -13,13 +14,13 @@ df = pd.read_csv("https://minio.lab.sspcloud.fr" + file_path)
 
 
 # Colonnes à modifier
-columns_to_drop = ["track_name","track_id","track_artist","track_album_id","track_album_name","track_album_release_date", "playlist_name", "playlist_id","track_popularity", "playlist_subgenre"]
+columns_to_drop = ["track_name", "track_id", "track_artist", "track_album_id", "track_album_name", "track_album_release_date", "playlist_name", "playlist_id", "track_popularity", "playlist_subgenre"]
 
 columns_to_winsorize = ['danceability', 'energy', 'loudness', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'tempo', 'duration_ms']
 
 columns_to_standardize = ['danceability', 'energy', 'loudness', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'duration_ms']
 
-predictors = [ 'speechiness', 'instrumentalness', 'energy', 'danceability', 'acousticness', 'tempo', 'duration_ms', 'loudness', 'key', 'mode']
+predictors = ['speechiness', 'instrumentalness', 'energy', 'danceability', 'acousticness', 'tempo', 'duration_ms', 'loudness', 'key', 'mode']
 
 
 # Winsorisation
@@ -36,12 +37,12 @@ def winsorize_outliers(df, columns, threshold=3):
     - pd.DataFrame: Nouveau DataFrame avec les colonnes ajustées.
     """
     for column in columns:
-        z_scores = zscore(df_copy[column])
-        
+        z_scores = zscore(df[column])
+
         # Calcul des limites
         lower_bound = df[column][z_scores > -threshold].min()
         upper_bound = df[column][z_scores < threshold].max()
-        
+
         # Winsorisation
         df[column] = np.clip(df[column], lower_bound, upper_bound)
 
@@ -83,12 +84,12 @@ def impute_with_random_forest(df, target_column, predictors, random_state=42):
 if __name__ == "__main__":
     data = df.copy()
 
-    data.drop(columns_to_drop, inplace = True)
+    data.drop(columns=columns_to_drop, inplace=True)
 
     winsorize_outliers(data, columns_to_winsorize, 3)
 
     scaler = StandardScaler()
-    data[columns_to_standardize] = scaler.fit_transform(df_standardized[columns_to_standardize])
+    data[columns_to_standardize] = scaler.fit_transform(data[columns_to_standardize])
 
     impute_with_random_forest(data, target_column='liveness', predictors=predictors)
     impute_with_random_forest(data, target_column='valence', predictors=predictors)
