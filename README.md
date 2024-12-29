@@ -14,9 +14,9 @@
 <h1 align="center">PY-Music-Genre-Classifier</h3>
 
   <p>
-    The <strong>PY-Music-Genre-Classifier</strong> predicts music genres based on audio features extracted from Spotify's API. The project uses supervised learning models such as CatBoost, LightGBM, and RandomForest to classify tracks into predefined genres.
+    <strong>PY-Music-Genre-Classifier</strong> permet de prédire les genres musicaux en se basant sur les caractéristiques audio. Le projet utilise des modèles d'apprentissage supervisé tels que CatBoost, LightGBM et RandomForest pour classer les morceaux dans des genres prédéfinis.
     <br />
-    <a href="https://github.com/moranenzo/PY-Music-Genre-Classifier"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/moranenzo/PY-Music-Genre-Classifier"><strong>Explorer »</strong></a>
     <br />
   </p>
 </div>
@@ -25,41 +25,43 @@
 
 <!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Table of Contents</summary>
+  <summary>Table des matières</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#about-the-project">À propos du projet</a>
       <ul>
-        <li><a href="#repository-structure">Repository Structure</a></li>
-        <li><a href="#dataset-construction">Dataset Construction</a></li>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#repository-structure">Structure du repository</a></li>
+        <li><a href="#dataset-construction">Construction du jeu de données</a></li>
+        <li><a href="#built-with">Modèles utilisés</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#getting-started">Pour commencer</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#prerequisites">Prérequis</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#usage">Utilisation</a></li>
+    <li><a href="#contact">Contacts</a></li>
+    <li><a href="#acknowledgments">Remerciements</a></li>
   </ol>
 </details>
 
 
 
-<h1 id="about-the-project">About the project</h1>
+<h1 id="about-the-project">À propos du projet</h1>
 
 <p>
-This project leverages Spotify's API to construct a dataset of audio features and track metadata for music genre classification. The pipeline includes automated data collection, preprocessing, and feature engineering. Supervised learning models such as CatBoost, LightGBM, and RandomForest are trained and evaluated using performance metrics like accuracy and F1-score, enabling accurate genre prediction.
+Ce projet repose sur la construction d'un ensemble de données combinant les informations collectées via l'API de Spotify et un second jeu de données provenant de Kaggle. Ces données contiennent des caractéristiques audio et des métadonnées de morceaux, permettant ainsi de classifier des genres musicaux. Le pipeline inclut la collecte automatisée des données, le prétraitement, ainsi que l'ingénierie des caractéristiques. Des modèles d'apprentissage supervisé tels que RandomForest, XGBoost et CatBoost sont ensuite entraînés et évalués à l'aide de métriques de performance telles que l'accuracy et le score F1, afin de garantir une prédiction précise des genres musicaux.
 </p>
-<p> Key Features :
-  <br />- Data preprocessing and feature engineering.
-  <br />- Model training and evaluation.
-  <br />- Genre prediction with an easy-to-use interface.
+
+<p> Fonctionnalités principales :
+  <br />- Collecte des données via l'API Spotify.
+  <br />- Prétraitement des données et ingénierie des caractéristiques.
+  <br />- Entraînement et évaluation des modèles.
 </p>
+
 
 
 <h2 id="repository-structure">📁 Repository Structure</h2>
