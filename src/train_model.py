@@ -10,7 +10,7 @@ from sklearn.ensemble import RandomForestClassifier
 from xgboost import XGBClassifier
 import joblib
 
-df_path = "/tlaflotte/genre_detector/data_tracks_cleaned.csv"
+df_path = "/ponte/Projet_data/data_tracks_cleaned.csv"
 
 
 # Load the dataset
@@ -22,7 +22,7 @@ def preprocess_data(data):
     # isolation of the feature to predict
     genres = np.array(data['playlist_genre'])
     features = data.drop(['playlist_genre', 'playlist_subgenre_encoded'], axis = 1)
-    features = np.array(data)
+    features = np.array(features)
 
     # separation in training and testing sets
     train_features, test_features, train_genres, test_genres = train_test_split(features, genres, test_size = 0.25, random_state = 0, shuffle = True)
@@ -83,7 +83,7 @@ def evaluate_model(model, X_test, y_test):
 
 
 # Save the model
-def save_model(model_name, save_name="model", model_dir="./models/"):
+def save_model(model_name, save_name="model", model_dir="./models"):
     file_path = None
     # Define the file path based on the model type
     if model_name == "catboost":
