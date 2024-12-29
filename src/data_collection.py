@@ -107,7 +107,7 @@ def save_to_csv(data, filename):
 
 
 if __name__ == "__main__":
-    playlist_ids = []
+    playlist_ids = [['1G8IpkZKobrIlXcVPoSIuf','7gqtGYFoCR3tAqTtEUQZTw']]
     track_data = []
     for playlist in playlist_ids:
         tracks = fetch_playlist_tracks(playlist)
